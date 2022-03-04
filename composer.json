@@ -1,8 +1,8 @@
 {
-    "name": "thierno/php_crud_mvc",
+
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Acme\\": "src/"
         }
     },
     "authors": [

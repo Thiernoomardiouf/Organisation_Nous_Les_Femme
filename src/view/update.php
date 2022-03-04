@@ -3,8 +3,20 @@
 	<head>
 		<title>Crud app Update Form</title>
 		<meta charset="utf-8">
-		<link href="http://localhost/projects/dist/css/bootstrap.min.css" rel="stylesheet"> 
-		<script src="http://localhost/projects/dist/js/bootstrap.min.js"></script>
+		<link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+        />
 	</head>
 	
 	<body>
@@ -49,33 +61,25 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">Région</label>
+						<label class="control-label">Ont-ils des contrats formel?</label>
 							<div class="controls">
-								<input type="text" name="region" placeholder="region" value="<?php echo htmlentities($region); ?>">
+								<input type="text" name="region" placeholder="Contrat" value="<?php echo htmlentities($contrat); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">Départementnnées</label>
+						<label class="control-label">Existe t-il un dispositif de formation du personnel ? </label>
 							<div class="controls">
-								<input type="text" name="departement" placeholder="departement" value="<?php echo htmlentities($departement); ?>">
+								<input type="text" name="departement" placeholder="Formation" value="<?php echo htmlentities($formation); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">Commune</label>
+						<label class="control-label">Votre entreprise prend-elle en compte les quotisations sociales et patronale ?</label>
 							<div class="controls">
-								<input type="text" name="commune" placeholder="commune" value="<?php echo htmlentities($commune); ?>">
-								<span class="help-inline"></span>
-							</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label">Quartier</label>
-							<div class="controls">
-								<input type="text" name="quartier" placeholder="quartier" value="<?php echo htmlentities($quartier); ?>">
+								<input type="text" name="commune" placeholder="Quotisation sociale" value="<?php echo htmlentities($quotisation); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
@@ -121,7 +125,7 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">L'enquéteur</label>
+						<label class="control-label">Le numéro de enquéteur</label>
 							<div class="controls">
 								<input type="text" name="admin_id" placeholder="admin_id" value="<?php echo htmlentities($admin_id); ?>">
 								<span class="help-inline"></span>
@@ -129,7 +133,7 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">La ressource humaine</label>
+						<label class="control-label">Le quartier de l'entreprise </label>
 							<div class="controls">
 								<input type="text" name="ressource_id" placeholder="ressource_id" value="<?php echo htmlentities($ressource_id); ?>">
 								<span class="help-inline"></span>

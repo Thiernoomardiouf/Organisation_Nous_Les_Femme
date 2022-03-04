@@ -46,7 +46,7 @@ class OrganisationsService extends OrganisationsGateway
 		return $this->organisationsGateway->selectById($id);
 	}
 
-	private function validateOrganisationParams($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation)
+	private function validateOrganisationParams($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation)
 	{
 		$errors = array();
 
@@ -59,17 +59,14 @@ class OrganisationsService extends OrganisationsGateway
 		if ( !isset($ninea) || empty($ninea) ) { 
 		    $errors[] = 'Le ninea est valide'; 
 		}
-		if ( !isset($region) || empty($region) ) { 
-		    $errors[] = 'La region est vailde'; 
+		if ( !isset($contrat) || empty($contrat) ) { 
+		    $errors[] = 'Le contrat est vailde'; 
 		}
-		if ( !isset($departement) || empty($departement) ) { 
-		    $errors[] = 'Le departement est valide'; 
+		if ( !isset($formation) || empty($formation) ) { 
+		    $errors[] = 'La formation est valide'; 
 		}
-		if ( !isset($commune) || empty($commune) ) { 
-		    $errors[] = 'La commune est valide'; 
-		}
-		if ( !isset($quartier) || empty($quartier) ) { 
-		    $errors[] = 'Le quartier est vailde'; 
+		if ( !isset($quotisation) || empty($quotisation) ) { 
+		    $errors[] = 'La quotisation est valide'; 
 		}
 		if ( !isset($siege) || empty($siege) ) { 
 		    $errors[] = 'Le siege est valide'; 
@@ -93,13 +90,13 @@ class OrganisationsService extends OrganisationsGateway
 		throw new ValidationException($errors);
 	}
 
-	public function createNewOrganisation($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
+	public function createNewOrganisation($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
 	{
 		try 
 		{
 			self::connect();
-			$this->validateContactParams($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation);
-			$result = $this->organisationsGateway->insert($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id);
+			$this->validateContactParams($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation);
+			$result = $this->organisationsGateway->insert($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id);
 			self::disconnect();
 			return $result;
 		}
@@ -110,12 +107,12 @@ class OrganisationsService extends OrganisationsGateway
 		}
 	}
 
-	public function editOrganisation($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id)
+	public function editOrganisation($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id)
 	{
 		try 
 		{
 			self::connect();
-			$result = $this->organisationsGateway->edit($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id);
+			$result = $this->organisationsGateway->edit($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id);
 			self::disconnect();
 		}
 		catch(Exception $e) {

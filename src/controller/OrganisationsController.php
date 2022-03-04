@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . 'src/model/Autoloader.php';
-require_once  'src/model/OrganisationsService.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . 'vendor/autoloader.php';
+require_once 'src/model/OrganisationsService.php';
 
 class OrganisationController 
 {
@@ -87,17 +87,16 @@ class OrganisationController
 			$non   = isset($_POST['nom'])   ? trim($_POST['nom'])   : null;
 			$coordonnees  = isset($_POST['coordonnees'])  ? trim($_POST['coordonnees'])  : null;
 			$ninea = isset($_POST['ninea']) ? trim($_POST['ninea']) : null;
-			$name   = isset($_POST['region'])   ? trim($_POST['region'])   : null;
-			$email  = isset($_POST['departement'])  ? trim($_POST['departement'])  : null;
-			$mobile = isset($_POST['commune']) ? trim($_POST['commune']) : null;
-			$name   = isset($_POST['quartier'])   ? trim($_POST['quartier'])   : null;
-			$email  = isset($_POST['siege'])  ? trim($_POST['siege'])  : null;
-			$mobile = isset($_POST['registre']) ? trim($_POST['registre']) : null;
-			$name   = isset($_POST['regime'])   ? trim($_POST['regime'])   : null;
-			$mobile = isset($_POST['nombre_employe']) ? trim($_POST['nombre_employe']) : null;
-			$email  = isset($_POST['date_creation'])  ? trim($_POST['date_creation'])  : null;
-			$mobile = isset($_POST['admin_id']) ? trim($_POST['admin_id']) : null;
-			$mobile = isset($_POST['ressource_id']) ? trim($_POST['ressource_id']) : null;
+			$contrat   = isset($_POST['contrat'])   ? trim($_POST['contrat'])   : null;
+			$formation  = isset($_POST['formation'])  ? trim($_POST['formation'])  : null;
+			$quotisation = isset($_POST['quotisation']) ? trim($_POST['quotisation']) : null;
+			$siege  = isset($_POST['siege'])  ? trim($_POST['siege'])  : null;
+			$registre = isset($_POST['registre']) ? trim($_POST['registre']) : null;
+			$regime   = isset($_POST['regime'])   ? trim($_POST['regime'])   : null;
+			$nombre_employe = isset($_POST['nombre_employe']) ? trim($_POST['nombre_employe']) : null;
+			$date_creation  = isset($_POST['date_creation'])  ? trim($_POST['date_creation'])  : null;
+			$admin_id = isset($_POST['admin_id']) ? trim($_POST['admin_id']) : null;
+			$ressource_id = isset($_POST['ressource_id']) ? trim($_POST['ressource_id']) : null;
 
 			try
 			{
@@ -111,7 +110,8 @@ class OrganisationController
 			}
 		}
 		// Include view from Create form
-		include ROOT_PATH . '/view/create.php';
+		include '/view/create.php';
+		//require('view/create.php');
 		}
 
 		public function editOrganisation()
@@ -121,10 +121,9 @@ class OrganisationController
 			$nom 	= '';
 			$coordonnees  = '';
 			$ninea = '';
-			$region 	= '';
-			$departement  = '';
-			$commune = '';
-			$quartier 	= '';
+			$contrat 	= '';
+			$formation  = '';
+			$quotisation = '';
 			$siege  = '';
 			$registre = '';
 			$regime = '';
@@ -143,17 +142,16 @@ class OrganisationController
 			$non   = isset($_POST['nom'])   ? trim($_POST['nom'])   : null;
 			$coordonnees  = isset($_POST['coordonnees'])  ? trim($_POST['coordonnees'])  : null;
 			$ninea = isset($_POST['ninea']) ? trim($_POST['ninea']) : null;
-			$name   = isset($_POST['region'])   ? trim($_POST['region'])   : null;
-			$email  = isset($_POST['departement'])  ? trim($_POST['departement'])  : null;
-			$mobile = isset($_POST['commune']) ? trim($_POST['commune']) : null;
-			$name   = isset($_POST['quartier'])   ? trim($_POST['quartier'])   : null;
-			$email  = isset($_POST['siege'])  ? trim($_POST['siege'])  : null;
-			$mobile = isset($_POST['registre']) ? trim($_POST['registre']) : null;
-			$name   = isset($_POST['regime'])   ? trim($_POST['regime'])   : null;
-			$mobile = isset($_POST['nombre_employe']) ? trim($_POST['nombre_employe']) : null;
-			$email  = isset($_POST['date_creation'])  ? trim($_POST['date_creation'])  : null;
-			$mobile = isset($_POST['admin_id']) ? trim($_POST['admin_id']) : null;
-			$mobile = isset($_POST['ressource_id']) ? trim($_POST['ressource_id']) : null;
+			$contrat   = isset($_POST['contrat'])   ? trim($_POST['contrat'])   : null;
+			$formation  = isset($_POST['formation'])  ? trim($_POST['formation'])  : null;
+			$quotisation = isset($_POST['quotisation']) ? trim($_POST['quotisation']) : null;
+			$siege  = isset($_POST['siege'])  ? trim($_POST['siege'])  : null;
+			$registre = isset($_POST['registre']) ? trim($_POST['registre']) : null;
+			$regime   = isset($_POST['regime'])   ? trim($_POST['regime'])   : null;
+			$nombre_employe = isset($_POST['nombre_employe']) ? trim($_POST['nombre_employe']) : null;
+			$date_creation  = isset($_POST['date_creation'])  ? trim($_POST['date_creation'])  : null;
+			$admin_id = isset($_POST['admin_id']) ? trim($_POST['admin_id']) : null;
+			$ressource_id = isset($_POST['ressource_id']) ? trim($_POST['ressource_id']) : null;
 			
 			try 
 			{

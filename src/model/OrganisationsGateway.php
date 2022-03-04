@@ -1,4 +1,5 @@
 <?php
+
 require 'Database.php';
 
 class OrganisationsGateway extends Database
@@ -8,10 +9,10 @@ class OrganisationsGateway extends Database
 	{
 		if (!isset($order))
 		{
-			$order = 'name';
+			$order = 'nom';
 		}
 		$pdo = Database::connect($order);
-		$sql = $pdo->prepare("SELECT * FROM organisation ORDER BY $order ASC");
+		$sql = $pdo->prepare("SELECT * FROM organisation");
 		$sql->execute();
 		// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,18 +34,18 @@ class OrganisationsGateway extends Database
 		return $result;
 	}
 
-	public function insert($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
+	public function insert($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
 	{
 		$pdo = Database::connect();
-		$sql = $pdo->prepare("INSERT INTO organisation (nom, coordonnees, ninea, region, departement, commune, quartier, siege, registre, regime, nombre_employe, date_creation, admin_id, ressource_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");		
-		$result = $sql->execute(array($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id));
+		$sql = $pdo->prepare("INSERT INTO organisation (nom, coordonnees, ninea, contrat, formation, quotisation, siege, registre, regime, nombre_employe, date_creation, admin_id, ressource_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");		
+		$result = $sql->execute(array($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id));
 	}
 
-	public function edit($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id)
+	public function edit($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
 	{
 		$pdo = Database::connect();
-		$sql = $pdo->prepare("UPDATE organisation SET nom = ?, coordonnees = ?, ninea = ?, region = ?, departement = ?, commune = ?, quartier = ?, siege = ?, registre = ?, regime = ?, nombre_employe = ?, date_creation = ?, admin_id = ?, ressource_id = ? WHERE id_organisation = ? LIMIT 1");
-		$result = $sql->execute(array($nom, $coordonnees, $ninea, $region, $departement, $commune, $quartier, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id));
+		$sql = $pdo->prepare("UPDATE organisation SET nom = ?, coordonnees = ?, ninea = ?, contrat = ?, formation = ?, quotisation = ?, siege = ?, registre = ?, regime = ?, nombre_employe = ?, date_creation = ?, admin_id = ?, ressource_id = ? WHERE id_organisation = ? LIMIT 1");
+		$result = $sql->execute(array($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id));
 	}
 
 	public function delete($id)

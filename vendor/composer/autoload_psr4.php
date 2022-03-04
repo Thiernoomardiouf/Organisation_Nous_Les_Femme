@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Thierno\\PhpCrudMvc\\' => array($baseDir . '/src'),
+    'Acme\\' => array($baseDir . '/src'),
 );
