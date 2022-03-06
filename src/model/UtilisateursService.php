@@ -11,15 +11,15 @@ class UtilisateursService extends UtilisateursGateway
 
 	public function __construct()
 	{
-		$this->organisationsGateway = new OrganisationsGateway();
+		$this->organisationsGateway = new UtilisateursGateway();
 	}
 
-	public function getAllOrganisations($order)
+	public function getAllUtilisateurs($order)
 	{
 		try
 		{
 			self::connect();
-			$result = $this->organisationsGateway->selectAll($order);
+			$result = $this->utilisateursGateway->selectAll($order);
 			self::disconnect();
 			return $result;
 		}
@@ -30,12 +30,12 @@ class UtilisateursService extends UtilisateursGateway
 		}
 	}
 
-	public function getOrganisation($id)
+	public function getUtilisateur($id)
 	{
 		try
 		{
 			self::connect();
-			$result = $this->organisationsGateway->selectById($id);
+			$result = $this->utilisateursGateway->selectById($id);
 			self::disconnect();
 		}
 		catch(Exception $e)
@@ -43,45 +43,27 @@ class UtilisateursService extends UtilisateursGateway
 			self::disconnect();
 			throw $e;
 		}
-		return $this->organisationsGateway->selectById($id);
+		return $this->utilisateursGateway->selectById($id);
 	}
 
-	private function validateOrganisationParams($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation)
+	private function validateUtilisateurParams($nom, $prenom, $adresse, $mot_de_passe, $logine)
 	{
 		$errors = array();
 
 		if ( !isset($nom) || empty($nom) ) { 
 		    $errors[] = 'Le non est invailde'; 
 		}
-		if ( !isset($coordonnees) || empty($coordonnees) ) { 
-		    $errors[] = 'Les coordonnees sont invalides'; 
+		if ( !isset($prenom) || empty($prenom) ) { 
+		    $errors[] = 'Le prenom sont invalides'; 
 		}
-		if ( !isset($ninea) || empty($ninea) ) { 
-		    $errors[] = 'Le ninea est invalide'; 
+		if ( !isset($adresse) || empty($adresse) ) { 
+		    $errors[] = 'Le adresse est invalide'; 
 		}
-		if ( !isset($contrat) || empty($contrat) ) { 
-		    $errors[] = 'Le contrat est invailde'; 
+		if ( !isset($mot_de_passe) || empty($mot_de_passe) ) { 
+		    $errors[] = 'Le mot de passe est invailde'; 
 		}
-		if ( !isset($formation) || empty($formation) ) { 
-		    $errors[] = 'La formation est invalide'; 
-		}
-		if ( !isset($quotisation) || empty($quotisation) ) { 
-		    $errors[] = 'La quotisation est invalide'; 
-		}
-		if ( !isset($siege) || empty($siege) ) { 
-		    $errors[] = 'Le siege est invalide'; 
-		}
-		if ( !isset($registre) || empty($registre) ) { 
-		    $errors[] = 'Le registre est invalide'; 
-		}
-		if ( !isset($regime) || empty($regime) ) { 
-		    $errors[] = 'Le regime est invalide'; 
-		}
-		if ( !isset($nombre_employe) || empty($nombre_employe) ) { 
-		    $errors[] = 'Le nombre employe est invalide'; 
-		}
-		if ( !isset($date_creation) || empty($date_creation) ) { 
-		    $errors[] = 'La date de creation est invalide'; 
+		if ( !isset($logine) || empty($logine) ) { 
+		    $errors[] = 'Le login est invalide'; 
 		}
 		if (empty($errors))
 		{
@@ -90,13 +72,13 @@ class UtilisateursService extends UtilisateursGateway
 		throw new ValidationException($errors);
 	}
 
-	public function createNewOrganisation($id_organisation, $nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
+	public function createNewUtilisateur($nom, $prenom, $adresse, $mot_de_passe, $logine)
 	{
 		try 
 		{
 			self::connect();
-			$this->validateOrganisationParams($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation);
-			$result = $this->organisationsGateway->insert($id_organisation, $nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id);
+			$this->validateUtilisateurParams($nom, $prenom, $adresse, $mot_de_passe, $logine);
+			$result = $this->utilisateursGateway->insert($nom, $prenom, $adresse, $mot_de_passe, $logine);
 			self::disconnect();
 			return $result;
 		}
@@ -107,25 +89,12 @@ class UtilisateursService extends UtilisateursGateway
 		}
 	}
 
-	public function editOrganisation($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id)
-	{
-		try 
-		{
-			self::connect();
-			$result = $this->organisationsGateway->edit($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id);
-			self::disconnect();
-		}
-		catch(Exception $e) {
-			self::disconnect();
-			throw $e;
-		}
-	}
-	public function deleteOrganisation($id)
+	public function deleteUtilisateur($id)
 	{
 		try
 		{
 			self::connect();
-			$result = $this->organisationsGateway->delete($id);
+			$result = $this->utilisateursGateway->delete($id);
 			self::disconnect();
 		}
 		catch(Exception $e)
