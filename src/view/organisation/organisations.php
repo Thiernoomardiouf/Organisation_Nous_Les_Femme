@@ -34,6 +34,8 @@
 							<th><a href="?orderby=nom">Nom</a></th>
 							<th><a href="?orderby=coordonnees">Coordonnées GPS</a></th>
 							<th><a href="?orderby=ninea">Ninea</a></th>
+							<th><a href="?orderby=siege">Siege</a></th>
+							<th><a href="?orderby=date_creation">Date de creation</a></th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -44,10 +46,12 @@
 								<td><?php echo htmlentities($organisation->nom);  ?></td>
 								<td><?php echo htmlentities($organisation->coordonnees); ?></td>
 								<td><?php echo htmlentities($organisation->ninea); ?></td>
+								<td><?php echo htmlentities($organisation->siege); ?></td>
+								<td><?php echo htmlentities($organisation->date_creation); ?></td>
 								<td>
-									<a class="btn btn-info" href="index.php?op=show&id=<?php echo $organisation->id_organisation; ?>">View</a>
-									<a class="btn btn-success" href="index.php?op=edit&id=<?php echo $organisation->id_organisation; ?>">Update</a>
-									<a class="btn btn-danger" href="index.php?op=delete&id=<?php echo $organisation->id_organisation; ?>">Delete Organisation</a>
+									<a class="btn btn-info" href="index.php?op=show&id=<?php echo $organisation->id_organisation; ?>">Détails</a>
+									<a class="btn btn-success" href="index.php?op=edit&id=<?php echo $organisation->id_organisation; ?>">Modifier</a>
+									<a class="btn btn-danger" href="index.php?op=delete&id=<?php echo $organisation->id_organisation; ?>">Supprimer</a>
 								</td>
 
 							</tr>

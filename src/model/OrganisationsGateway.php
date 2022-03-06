@@ -34,14 +34,14 @@ class OrganisationsGateway extends Database
 		return $result;
 	}
 
-	public function insert($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
+	public function insert($id_organisation, $nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
 	{
 		$pdo = Database::connect();
-		$sql = $pdo->prepare("INSERT INTO organisation (nom, coordonnees, ninea, contrat, formation, quotisation, siege, registre, regime, nombre_employe, date_creation, admin_id, ressource_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");		
-		$result = $sql->execute(array($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id));
+		$sql = $pdo->prepare("INSERT INTO organisation (id_organisation, nom, coordonnees, ninea, contrat, formation, quotisation, siege, registre, regime, nombre_employe, date_creation, admin_id, ressource_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");		
+		$result = $sql->execute(array($id_organisation, $nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id));
 	}
 
-	public function edit($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id)
+	public function edit($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id)
 	{
 		$pdo = Database::connect();
 		$sql = $pdo->prepare("UPDATE organisation SET nom = ?, coordonnees = ?, ninea = ?, contrat = ?, formation = ?, quotisation = ?, siege = ?, registre = ?, regime = ?, nombre_employe = ?, date_creation = ?, admin_id = ?, ressource_id = ? WHERE id_organisation = ? LIMIT 1");

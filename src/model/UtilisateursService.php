@@ -1,13 +1,13 @@
 <?php
 
-require_once 'OrganisationsGateway.php';
+require_once 'UtilisateursGateway.php';
 require_once 'ValidationException.php';
 require_once 'Database.php';
 
-class OrganisationsService extends OrganisationsGateway
+class UtilisateursService extends UtilisateursGateway
 {
 
-	private $organisationsGateway = null;
+	private $utilisateursGateway = null;
 
 	public function __construct()
 	{
