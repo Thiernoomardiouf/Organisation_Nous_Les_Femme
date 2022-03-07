@@ -25,9 +25,20 @@
 			</div>
 
 			<div class="row">
-				<p>
-					<a href="index.php?op=new" class="btn btn-success">Ajouter</a>
-				</p>	
+				<div class="row">
+					<div class="col-3">
+						<p>
+							<a href="index.php?op=new" class="btn btn-success">Ajouter</a>
+						</p>
+					</div>
+					<div class="col-3"></div>
+					<div class="col-3"></div>
+					<div class="col-3">
+						<p>
+							<a href="index.php?op=dec" class="btn btn-danger">Deconnexion</a>
+						</p>
+					</div>
+				</div>	
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>

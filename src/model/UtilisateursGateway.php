@@ -1,6 +1,6 @@
 <?php
 
-require 'Database.php';
+//require 'Database.php';
 
 class UtilisateursGateway extends Database
 {
@@ -46,6 +46,15 @@ class UtilisateursGateway extends Database
 		$pdo = Database::connect();
 		$sql = $pdo->prepare("DELETE FROM utilisateur WHERE id_utilisa =?");
 		$sql->execute(array($id));
+	}
+
+	public function login($mot_de_passe, $logine)
+	{
+		$pdo = Database::connect();
+		$sql = $pdo->prepare("SELECT id_utilisa FROM utilisateur WHERE mot_de_passe = ? AND logine = ? limit 1 ");
+		$sql->execute(array($mot_de_passe, $logine));
+		$result = $sql->fetchAll();
+		return $result;
 	}
 
 }

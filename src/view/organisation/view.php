@@ -179,7 +179,7 @@
 		    </div>
 			<br>
 			<div class="form-actions">
-				<a class="btn btn-default btn-success " href="index.php">Retour</a>
+				<a class="btn btn-default btn-success " href="index.php?op=ret">Retour</a>
 			</div>
 		</div>
 	</body>

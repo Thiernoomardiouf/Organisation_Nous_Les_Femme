@@ -206,7 +206,7 @@
 					<div class="form-actions mb-3">
 						<input type="hidden" name="form-submitted" value="1">
 						<button type="submit" class="btn btn-success">Ajouter</button>
-						<a class="btn btn-default btn-danger" href="index.php">Retour</a>
+						<a class="btn btn-default btn-danger" href="index.php?op=ret">Retour</a>
 					</div>
 				</form>
 			</div>

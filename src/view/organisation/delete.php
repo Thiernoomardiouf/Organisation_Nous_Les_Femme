@@ -40,7 +40,7 @@
             <div class="form-actions">
                 <input type="hidden" name="form-submitted" value="1">
                 <button type="submit" class="btn text-center btn-danger">Supprimer définitive l'entreprise</button>
-                <a class="btn btn-default btn-success" href="index.php">Annuler</a>
+                <a class="btn btn-default btn-success" href="index.php?op=ret">Annuler</a>
             </div>
         </form>
     </div>

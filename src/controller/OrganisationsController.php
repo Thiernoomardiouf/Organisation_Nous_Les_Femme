@@ -4,17 +4,20 @@
 
 include_once 'src/model/OrganisationsService.php';
 include_once 'src/model/RepondantsService.php';
+include_once 'src/model/UtilisateursService.php';
 
 class OrganisationController 
 {
 
 	private $organisationsService = null;
 	private $repondantsService = null;
+	private $utilisateursService = null;
 
 	public function __construct()
 	{
 		$this->organisationsService = new OrganisationsService();
 		$this->repondantsService = new RepondantsService();
+		$this->utilisateursService = new UtilisateursService();
 	}
 
 	public function redirect($location)
@@ -30,8 +33,17 @@ class OrganisationController
 		{
 			if (!$op || $op == 'list')
 			{
-				$this->listOrganisations();
+				//$this->listOrganisations();
+				$this->connexion();
 			}
+				elseif ($op == 'dec')
+				{
+					$this->deconnexion();
+				}
+				elseif ($op == 'insc')
+				{
+					$this->inscription();
+				}
 				elseif ($op == 'new')
 				{
 					$this->saveOrganisation();
@@ -47,6 +59,10 @@ class OrganisationController
 				elseif ($op == 'show')
 				{
 					$this->showOrganisation();
+				}
+				elseif ($op == 'ret')
+				{
+					$this->listOrganisations();
 				}
 				else 
 				{
@@ -223,6 +239,78 @@ class OrganisationController
 		$repondant = $this->repondantsService->getRepondant($id);
 
 		include 'src/view/organisation/view.php';
+	}
+
+	public function inscription(){
+
+		$title = 'Create New Utilisateur';
+
+		$nom 	= '';
+		$prenom  = '';
+		$adresse = '';
+		$mot_de_passe 	= '';
+		$logine  = '';
+		
+		$errors = array();
+
+		if (isset($_POST['form-submitted']))
+		{
+			$nom   = isset($_POST['nom'])   ? trim($_POST['nom'])   : null;
+			$prenom  = isset($_POST['prenom'])  ? trim($_POST['prenom'])  : null;
+			$adresse = isset($_POST['adresse']) ? trim($_POST['adresse']) : null;
+			$mot_de_passe   = isset($_POST['mot_de_passe'])   ? trim($_POST['mot_de_passe'])   : null;
+			$logine  = isset($_POST['logine'])  ? trim($_POST['logine'])  : null;
+
+			try
+			{
+				$this->utilisateursService->createNewUtilisateur($nom, $prenom, $adresse, $mot_de_passe, $logine);
+				//$this->redirect('index.php');
+				$this->listOrganisations();
+				return;
+			}
+			catch(ValidationException $e)
+			{
+				$errors = $e->getErrors();
+			}
+		}
+		// Include view from Create form
+		include 'src/view/utilisateur/inscription.php';
+	}
+
+	public function connexion(){
+
+		$title = 'Page de Connexion';
+
+		$logine 	= '';
+		$mot_de_passe  = '';
+		
+		$errors = array();
+
+		if (isset($_POST['form-submitted']))
+		{
+			$mot_de_passe   = isset($_POST['mot_de_passe'])   ? trim($_POST['mot_de_passe'])   : null;
+			$logine  = isset($_POST['logine'])  ? trim($_POST['logine'])  : null;
+
+			try
+			{
+				$result = $this->utilisateursService->loginUtilisateur($mot_de_passe, $logine);
+				//$this->redirect('index.php');
+				if(count($result) > 0){
+					$this->listOrganisations();
+					return;
+				}
+			}
+			catch(ValidationException $e)
+			{
+				$errors = $e->getErrors();
+			}
+		}
+		// Include view from Create form
+		include 'src/view/utilisateur/connexion.php';
+	}
+
+	public function deconnexion(){
+		$this->redirect('index.php');
 	}
 
 	public function showError($title, $message)

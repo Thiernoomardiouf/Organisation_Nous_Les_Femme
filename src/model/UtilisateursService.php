@@ -11,7 +11,7 @@ class UtilisateursService extends UtilisateursGateway
 
 	public function __construct()
 	{
-		$this->organisationsGateway = new UtilisateursGateway();
+		$this->utilisateursGateway = new UtilisateursGateway();
 	}
 
 	public function getAllUtilisateurs($order)
@@ -96,6 +96,22 @@ class UtilisateursService extends UtilisateursGateway
 			self::connect();
 			$result = $this->utilisateursGateway->delete($id);
 			self::disconnect();
+		}
+		catch(Exception $e)
+		{
+			self::disconnect();
+			throw $e;
+		}
+	}
+
+    public function loginUtilisateur($mot_de_passe, $logine)
+	{
+		try
+		{
+			self::connect();
+			$result = $this->utilisateursGateway->login($mot_de_passe, $logine);
+			self::disconnect();
+            return $result; 
 		}
 		catch(Exception $e)
 		{

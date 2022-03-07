@@ -157,7 +157,7 @@
 					<div class="form-actions">
 						<input type="hidden" name="form-submitted" value="1">
 						<button type="submit" class="btn btn-success">Mettre à jour</button>
-						<a class="btn btn-default btn-danger" href="index.php">Retour</a>
+						<a class="btn btn-default btn-danger" href="index.php?op=ret">Retour</a>
 					</div>
 				</form>
 			</div>
