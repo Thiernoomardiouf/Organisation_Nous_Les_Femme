@@ -175,6 +175,41 @@
 								</label>
 							</div>
 					</div>
+					<div class="">
+						<h3><strong>La localité de l'entreprise</strong></h3>
+						<div class="control-group mb-3">
+							<label class="control-label"> <strong> Le quartier de l'entreprise </strong> </label>
+								<div class="controls">
+									<label class="checkbox">
+										<?php echo $quartier->nom_quartier; ?>
+								</label>
+							</div>
+						</div>
+						<div class="control-group mb-3">
+							<label class="control-label"> <strong> La commune de l'organisation </strong> </label>
+								<div class="controls">
+									<label class="checkbox">
+										<?php echo $commune->nom_commune; ?>
+								</label>
+							</div>
+						</div>
+						<div class="control-group mb-3">
+							<label class="control-label"> <strong> Le département de l'entreprise </strong> </label>
+								<div class="controls">
+									<label class="checkbox">
+										<?php echo $departement->nom_departement; ?>
+								</label>
+							</div>
+						</div>
+						<div class="control-group mb-3">
+							<label class="control-label"> <strong> La région de l'entreprise </strong> </label>
+								<div class="controls">
+									<label class="checkbox">
+										<?php echo $region->nom_region; ?>
+								</label>
+							</div>
+						</div>
+					</div>
 				</div>
 		    </div>
 			<br>

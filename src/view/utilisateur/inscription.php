@@ -122,6 +122,9 @@
                                         <input type="hidden" name="form-submitted" value="1">
                                         <button type="submit" class="btn-block btn-primary">Inscrire</button>
                                      </div>
+                                     <div class="form-actions mb-3">
+                                        <a href="index.php?op=dec" class="text-info">Connecter vous sur la plateforme</a>
+                                     </div>
                                 </div>
                             </div>
                         </form>

@@ -5,6 +5,7 @@
 include_once 'src/model/OrganisationsService.php';
 include_once 'src/model/RepondantsService.php';
 include_once 'src/model/UtilisateursService.php';
+include_once 'src/model/LocalitesService.php';
 
 class OrganisationController 
 {
@@ -12,12 +13,14 @@ class OrganisationController
 	private $organisationsService = null;
 	private $repondantsService = null;
 	private $utilisateursService = null;
+	private $localitesService = null;
 
 	public function __construct()
 	{
 		$this->organisationsService = new OrganisationsService();
 		$this->repondantsService = new RepondantsService();
 		$this->utilisateursService = new UtilisateursService();
+		$this->localitesService = new LocalitesService();
 	}
 
 	public function redirect($location)
@@ -137,7 +140,8 @@ class OrganisationController
 			{
 				$this->organisationsService->createNewOrganisation($id_organisation, $nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id);
 				$this->repondantsService->createNewRepondant($nomRepondant, $prenom, $fonction, $telephone, $courriel, $id_organisation);
-				$this->redirect('index.php');
+				//$this->redirect('index.php');
+				$this->listOrganisations();
 				return;
 			}
 			catch(ValidationException $e)
@@ -146,6 +150,7 @@ class OrganisationController
 			}
 		}
 		// Include view from Create form
+		//$organisation = $this->organisationsService->getOrganisation($id);
 		include 'src/view/organisation/create.php';
 		}
 
@@ -191,7 +196,9 @@ class OrganisationController
 			try 
 			{
 				$this->organisationsService->editOrganisation($nom, $coordonnees, $ninea, $contrat, $formation, $quotisation, $siege, $registre, $regime, $nombre_employe, $date_creation, $admin_id, $ressource_id, $id);
-				$this->redirect('index.php');
+				//$this->redirect('index.php');
+				$this->listOrganisations();
+				
 				return;
 			}
 			catch(ValidationException $e)
@@ -212,7 +219,9 @@ class OrganisationController
 			$this->repondantsService->deleteRepondant($id);
 			$this->organisationsService->deleteOrganisation($id);
 
-			$this->redirect('index.php');
+			//$this->redirect('index.php');
+			$this->listOrganisations();
+			return;
 		}
 
 		if (!$id)
@@ -237,6 +246,13 @@ class OrganisationController
 		}
 		$organisation = $this->organisationsService->getOrganisation($id);
 		$repondant = $this->repondantsService->getRepondant($id);
+
+		$cle = $organisation->ressource_id;
+
+		$quartier = $this->localitesService->getQuatier($cle);
+		$commune = $this->localitesService->getCommune($cle);
+		$departement = $this->localitesService->getDepartement($cle);
+		$region = $this->localitesService->getRegion($cle);
 
 		include 'src/view/organisation/view.php';
 	}
@@ -296,8 +312,15 @@ class OrganisationController
 				$result = $this->utilisateursService->loginUtilisateur($mot_de_passe, $logine);
 				//$this->redirect('index.php');
 				if(count($result) > 0){
-					$this->listOrganisations();
+
+					$_SESSION['logine'] = $logine;
+					session_start();
+					if($_SESSION['logine'] !== ""){
+						$logine = $_SESSION['logine'];
+						$this->listOrganisations();
 					return;
+					}
+					
 				}
 			}
 			catch(ValidationException $e)
@@ -310,6 +333,8 @@ class OrganisationController
 	}
 
 	public function deconnexion(){
+		session_start();
+		session_unset();
 		$this->redirect('index.php');
 	}
 
