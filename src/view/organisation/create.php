@@ -136,16 +136,26 @@
 						</div>
 
 						<div class="col-3 mb-3">
-							<label class="control-label">Le numéro de l'enquéteur</label>
+							<label class="control-label my-1">Le nom de l'enquéteur</label>
 								<div class="controls">
-									<input type="number" name="admin_id" class="form-control" placeholder="admin_id" value="<?php echo htmlentities($admin_id); ?>">
+									<select name="admin_id" id="admin_id" class="form-select" >
+										<option value="">Le nom de l'enquéteur</option>
+										<?php foreach ($utilisateurs as $utilisateur) : ?>
+											<option value=<?php echo $utilisateur->id_utilisa;?>> <?php echo $utilisateur->prenom . " " . $utilisateur->nom;?></option>
+										<?php endforeach; ?>
+									</select>
 									<span class="help-inline"></span>
 								</div>
 						</div>
 						<div class="col-3 mb-3">
-							<label class="control-label">Le quartier de l'entreprise</label>
+							<label class="control-label my-1">Le quartier de l'entreprise</label>
 								<div class="controls">
-									<input type="number" name="ressource_id" class="form-control" placeholder="ressource_id" value="<?php echo htmlentities($ressource_id); ?>">
+									<select name="ressource_id" id="ressource_id" class="form-select" >
+										<option value="">Choisir le quartier de l'entreprise</option>
+										<?php foreach ($localites as $localite) : ?>
+											<option value=<?php echo $localite->id_quartier;?>> <?php echo $localite->nom_quartier;?></option>
+										<?php endforeach; ?>
+									</select>
 									<span class="help-inline"></span>
 								</div>
 						</div>

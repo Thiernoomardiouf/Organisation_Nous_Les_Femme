@@ -150,7 +150,9 @@ class OrganisationController
 			}
 		}
 		// Include view from Create form
-		//$organisation = $this->organisationsService->getOrganisation($id);
+		$orderby = isset($_GET['orderby']) ? $_GET['orderby'] : null;
+		$localites = $this->localitesService->getAllLocalites($orderby);
+		$utilisateurs = $this->utilisateursService->getAllUtilisateurs($orderby);
 		include 'src/view/organisation/create.php';
 		}
 
@@ -206,6 +208,9 @@ class OrganisationController
 				$errors = $e->getErrors();
 			}
 		}
+		$orderby = isset($_GET['orderby']) ? $_GET['orderby'] : null;
+		$localites = $this->localitesService->getAllLocalites($orderby);
+		$utilisateurs = $this->utilisateursService->getAllUtilisateurs($orderby);
 		include 'src/view/organisation/update.php';
 	}
 
