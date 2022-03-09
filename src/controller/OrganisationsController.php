@@ -318,8 +318,9 @@ class OrganisationController
 				//$this->redirect('index.php');
 				if(count($result) > 0){
 
-					$_SESSION['logine'] = $logine;
 					session_start();
+					$_SESSION['logine'] = $logine;
+				
 					if($_SESSION['logine'] !== ""){
 						$logine = $_SESSION['logine'];
 						$this->listOrganisations();
@@ -331,6 +332,7 @@ class OrganisationController
 			catch(ValidationException $e)
 			{
 				$errors = $e->getErrors();
+				echo "Le login ou le mot de passe est incorrecte";
 			}
 		}
 		// Include view from Create form
